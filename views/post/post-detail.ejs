@@ -1,0 +1,21 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="mx-auto w-50 p-3 bg-dark text-white">
+				<h1><%= pageTitle %></h1>
+				<div class="post">
+						<% if(errMessage) { %>
+							<div><%= errMessage %></div>
+						<% } %>
+					<h3><%= post.title %></h3>
+					<div class="post-view">
+						<p id="post-description"><%= post.description %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('../includes/footer.ejs') %>

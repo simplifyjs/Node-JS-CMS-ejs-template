@@ -1,0 +1,59 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="mx-auto w-50 p-3 bg-dark text-white">
+					<h1><%= pageTitle %></h1>
+					<div class="row">
+						<div class="col-sm-6">
+							<form action="/profile-edit" method="POST">
+								<div class="form-group">
+									<label for="email" class="form-check-label">Email</label>
+									<input type="email" name="email" class="form-control <% if (errFields.errEmail) { %>is-invalid<% } %>"  required="required" value="<%= profile.email %>">
+									<div class="invalid-feedback" ><%= errFields.errEmail %></div>
+								</div>
+								<div class="form-group">
+									<label for="username" class="form-check-label">Username</label>
+									<input type="text" name="username" class="form-control <% if (errFields.errUsername) { %>is-invalid<% } %>"  required="required" value="<%= profile.username %>">
+									<div class="invalid-feedback" ><%= errFields.errUsername %></div>
+								</div>
+								<div class="form-group">
+									<label for="password" class="form-check-label">Password</label>
+									<input type="password" name="newpassword" class="form-control <% if (errFields.errPassword) { %>is-invalid<% } %>"  required="required">
+									<div class="invalid-feedback" ><%= errFields.errPassword %></div>
+								</div>
+								<div class="form-group">
+									<label for="password" class="form-check-label">Confirm Password</label>
+									<input type="password" name="newpasswordConf" class="form-control <% if (errFields.errPasswordConf) { %>is-invalid<% } %>"  required="required" >
+									<div class="invalid-feedback" ><%= errFields.errPasswordConf %></div>
+								</div>
+								<input type="hidden" name="id" value="<%= profile.id %>">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+								<input type="submit" class="btn btn-primary" value="Update User">
+							</form>
+							<form action="/profile-delete" method="post">
+								<input type="hidden" name="id" value="<%= profile.id %>">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+								<input type="submit" class="btn btn-danger" value="Delete User">
+							</form>
+						</div>
+						<div class="col-sm-6">
+								<h3>Profile View</h3>
+								<div class="profile-view">
+									<p id="username">Name: <%= profile.username %></p>
+									<p id="email">Email: <%= profile.email %></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include('../includes/footer.ejs') %>
+		
+

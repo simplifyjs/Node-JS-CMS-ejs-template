@@ -1,0 +1,36 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+	<div class="container">
+    <div class="mx-auto w-50 p-3 bg-dark text-white">
+      <h1><%= pageTitle %></h1>
+      <div class="main">
+        <% if(errMessage) { %>
+          <div><%= errMessage %></div>
+        <% } %>
+        <% if (posts.length > 0) { %>
+          <% for(let post of posts) { %>
+            <div class="post-item">
+            <h3><%= post.email %></h3>
+            <h5>
+              <a href="/posts/<%= post.id %>"><%= post.title %></a>
+            </h5>
+            <a href="/posts/<%= post.id %>" class="btn btn-primary">Details</a>
+            <a href="/posts/<%= post.id %>/edit" class="btn btn-warning <%= isLogin ? 'd-block' : 'd-none' %>" >Edit</a>
+            <button 
+              id="delete-post" 
+              onclick="deletePost(this)" 
+              type="button" 
+              class="btn btn-danger <%= isLogin ? 'd-block' : 'd-none' %>">Delete
+            </button>
+            <input type="hidden" name="id" value="<%= post._id %>">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <hr>
+          </div>
+          <%- include('../includes/pagination.ejs') %>
+          <% } %>
+        <%} else { %>
+          <h2>No post found</h2>
+        <% } %>
+      </div>
+  </div>
+<%- include('../includes/footer.ejs') %>

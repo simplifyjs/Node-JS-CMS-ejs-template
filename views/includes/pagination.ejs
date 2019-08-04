@@ -1,0 +1,17 @@
+<% if(totalItems > itemsPerPage) { %>
+  <section id="pagination">
+    <% if(currentPage != 1) { %> 
+      <a class="first" href="?page=1">1</a>
+    <% } %>
+    <% if(hasPreviousPage) { %> 
+      <a class="previous" href="?page=<%= previousPage %>"><% previousPage %></a>
+    <% } %>
+    <a href="?page=<%= currentPage %>"><%= currentPage %></a>
+    <% if(hasNextPage) { %>
+      <a class="next" href="?page=<%= nextPage %>"><%= nextPage %></a>
+    <% } %>
+    <% if(lastPage != currentPage && lastPage != nextPage) { %>
+      <a class="last" href="?page=<%= lastPage %>"><%= lastPage %></a>
+    <% } %>
+  </section>
+<% } %>

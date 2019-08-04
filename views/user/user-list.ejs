@@ -1,0 +1,52 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+	<div class="container">
+    <div class="mx-auto w-50 p-3 bg-dark text-white">
+      <h1>List of users</h1>
+      <hr>
+      <% if(errMessage) { %>
+        <div><%= errMessage %></div>
+      <% } %>
+      <% if(users.length > 0) { %>  
+        <% for(let user of users) { %>
+        <div class="list-row">   
+          <h3><%= user.email %></h3>
+          <h5><%= user.username %></h5>
+          <a 
+            href="/user/<%= user.id %>" 
+            class="btn btn-primary" 
+            role="button" 
+            aria-pressed="true">Details
+          </a>
+          <a 
+            href="/user/<%= user.id %>/edit" 
+            class="btn btn-warning" 
+            role="button" 
+            aria-pressed="true">Edit
+          </a>
+          <button 
+            id="delete-user" 
+            class="btn btn-danger" 
+            onclick="deleteUser(this)" 
+            type="button" 
+            role="button" 
+            aria-pressed="true">Delete
+          </button>
+          <input 
+            type="hidden" 
+            name="id" 
+            value="<%= user._id %>">
+          <input 
+            type="hidden" 
+            name="_csrf" 
+            value="<%= csrfToken %>">
+          <hr>  
+        </div>
+        <% } %>
+      <% } else { %>
+        <h2>No user found</h2>   
+      <% } %>
+    <%- include('../includes/pagination.ejs') %>
+    </div>
+
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,36 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="mx-auto w-50 p-3 bg-dark text-white">
+						<h1><%= pageTitle %></h1>
+						<div class="add-post">
+							<div class="add-post-form">
+								<form action="/add-post" class="needs-validation" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="title" class="form-check-label">Title</label>
+										<input type="text" name="title" class="form-control <% if (errFields.errTitle) { %>is-invalid<% } %>"  placeholder="Title" required="required" value="<%= oldInput.title %>">
+										<div class="invalid-feedback" >
+											<%= errFields.errTitle %>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="description" class="form-check-label">Description</label>
+										<textarea name="description" class="form-control <% if (errFields.errDesc) { %>is-invalid<% } %>" placeholder="Description" required="required" value="<%= oldInput.description %>"><%= oldInput.description %></textarea>
+										<div class="invalid-feedback">
+											<%= errFields.errDesc %>
+										</div>
+									</div>
+									<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+									<input class="btn btn-primary" type="submit" value="Add Post">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		</div>
+	</div>
+<%- include('../includes/footer.ejs') %>

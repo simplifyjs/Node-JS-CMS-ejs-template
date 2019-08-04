@@ -1,0 +1,25 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+	<h1><%= pageTitle %></h1>
+	<div class="main">
+    <hr>
+    <% if (posts.length > 0) { %>
+      <% for(let post of posts) { %>
+        <p>List of posts</p>
+        <h2><%= post.email %></h2>
+        <h2><%= post.title %></h2>
+        <a href="/posts/<%= post.id %>">Details</a>
+        <a class="<%= isLogin ? 'd-block' : 'd-none'  %>" href="/posts/<%= post.id %>/edit">Edit</a>
+        <form class="<%= isLogin ? 'd-block' : 'd-none'  %>" action="/post-delete" method="post">
+          <input type="hidden" name="id" value="<%= post.id %>">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <input type="submit" value="Delete">
+        </form>
+        <hr>
+      <% } %>
+    <%} else { %>
+      <h2>No post found</h2>
+    <% } %>
+	</div>
+<%- include('../includes/footer.ejs') %>
+

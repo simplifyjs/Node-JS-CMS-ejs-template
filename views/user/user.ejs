@@ -1,0 +1,20 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/nav.ejs') %>
+
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="mx-auto w-50 p-3 bg-dark text-white">
+					<h1><%= pageTitle %></h1>
+					<h3>Profile View</h3>
+					<div class="profile-view">
+						<p id="username">Name: <%= profile.username %></p>
+						<p id="email">Email: <%= profile.email %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('../includes/footer.ejs') %>
